@@ -1,0 +1,18 @@
+{
+    // "files.associations": {
+    //     "*.m": "matlab"
+    //     //其他关联设置在此处添加
+    // },
+    // "matlab.matlabpath": "D:\\matlab\\bin\\matlab.exe",
+    // "matlab.mlintpath": "D:\\matlab\\bin\\win64\\mlint.exe",
+    // "matlab.linterEncoding": "utf-8",
+    // "[matlab]": {
+    //     "files.encoding": "gb2312"
+    // },
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "matlab": "cd $dir && matlab -nosplash -nodesktop -r $fileNameWithoutExt"
+    },
+
+
+}
