@@ -15,12 +15,20 @@ function  graph_show(x)
     grid;
 end     
 
-
+function music_play(y,fs)
+    player=audioplayer(y,fs);
+    play(player)
+    graph_show(y);
+    disp("按下任意键暂停并继续")
+    waitforbuttonpress;
+    pause(player);
+end 
+ 
 function main()
-    wav_change_path="D:\\小学期\\18 The Slopes of the Blessure.wav";
-    mp3__change_path="D:\\小学期\\海浪.mp3";
-
-
+    wav_change_path="18 The Slopes of the Blessure.wav";
+    mp3__change_path="海浪.mp3";
+    ogg_change_path="海浪.ogg";
+   
     hFig = uifigure;
     hText1 = uicontrol('Style', 'text', 'Parent', hFig, 'Position', [75 300 200 50], 'String', '大数据23周弘毅');
     hText2 = uicontrol('Style', 'text', 'Parent', hFig, 'Position', [75 275 200 50], 'String', '学号：23152090125');
@@ -39,45 +47,64 @@ function main()
         [wav_y,wav_Fs] = audioread("海浪.wav");%读取wav文件
         [mp3_y,mp3_Fs]=audioread("18 The Slopes of the Blessure.mp3");%读取MP3
         disp("选择你要转化的文件")
-        disp("1.wav转mp3")
-        disp("2.mp3转wav")
-        disp("3.wav转AAC")
-        disp("4.mp3转AAC")
+        disp("1.海浪.wav")
+        disp("2.18 The Slopes of the Blessure.mp3")
         a=input("请输入数字：");
-
         switch a
             case 1
-                audiowrite(mp3__change_path,wav_y,wav_Fs);
-                disp("wav转mp3成功");
-                clear mp3_y;
-                clear mp3_Fs;
-                [mp3_y,mp3_Fs]=audioread(mp3__change_path);%读取MP3
-                graph_show(mp3_y);
-                music_dynamic_show(mp3_y,mp3_Fs);
-                
+                disp("选择你要转化的文件")
+                disp("1.wav转成mp3")
+                disp("2.wav转成ogg")
+                b=input("请输入数字：");
+                switch b
+                    case 1
+                        audiowrite(mp3__change_path,wav_y,wav_Fs);
+                        disp("转换成功")
+                         clear wav_y;
+                         clear wav_Fs;
+                         [y,fs]=audioread("海浪.mp3");
+                         music_play(y,fs)
+                    
+                    case 2
+                        audiowrite(ogg_change_path,wav_y,wav_Fs);
+                        disp("转换成功")
+                        clear wav_y;
+                        clear wav_Fs;
+                        [y,fs]=audioread("海浪.ogg");
+                        music_play(y,fs)
+                end
             case 2
-                audiowrite(wav_change_path,mp3_y,mp3_Fs);
-                disp("mp3转wav成功");
-                clear wav_y;
-                clear wav_Fs;
-                [wav_y,wav_Fs] = audioread(wav_change_path);%读取wav文件
-                graph_show(wav_y);
-                music_dynamic_show(wav_y,wav_Fs);
-                
-            case 3
-                disp("wav转AAC功能暂未开放");
-            case 4
-                disp("mp3转AAC功能暂未开放");
-
+                disp("选择你要转化的文件")
+                disp("1.mp3转成wav")
+                disp("2.mp3转成ogg")
+                b=input('请输入数字：');
+                switch b
+                    case 1
+                        audiowrite( wav_change_path,mp3_y,mp3_Fs);
+                        disp("转换成功")
+                        clear mp3_y;
+                        clear mp3_Fs;
+                        [y,fs]=audioread("18 The Slopes of the Blessure.mp3");
+                        music_play(y,fs)
+                    case 2
+                        audiowrite("18 The Slopes of the Blessure.ogg",mp3_y,mp3_Fs);
+                        disp("转换成功")
+                        clear mp3_y;
+                        clear mp3_Fs;
+                        [y,fs]=audioread("18 The Slopes of the Blessure.ogg");
+                        music_play(y,fs)
+                end
         end
+        
         disp("请按Esc退出");
-        pause(0.00001);
+        waitforbuttonpress;
         key=get(gcf,'CurrentCharacter');
         if  uint8(key)==27
-           close all
+           exit;
         end
 end
     main();
+               
 
 
 
