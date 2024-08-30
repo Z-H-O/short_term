@@ -95,15 +95,26 @@ function main()
                         music_play(y,fs)
                 end
         end
+        % hFig2=uifigure;
         
+        % hButton2 = uibutton(hFig2, 'push');
+        % set(hButton2, 'Position', [275 200 100 50], 'Text', '退出', 'FontSize', 14, 'FontWeight', 'bold');   
+    %     set(hButton2, 'ButtonPushedFcn', @(src, ~)exitbuttonClick2());
+    %  %设置按钮的回调函数
+    %     function exitbuttonClick2()
+    %         exit;
+    %     end
         disp("请按Esc退出");
         waitforbuttonpress;
         key=get(gcf,'CurrentCharacter');
         if  uint8(key)==27
            exit;
         end
+    
+    
 end
-    main();
+ 
+main();
                
 
 
