@@ -5,13 +5,13 @@ function  graph_show(x)
     subplot(211);
     plot(x);
     xlabel('Time/s');ylabel('Amplitude');
-    title('信号的波形');
+    title('音频的波形');
     grid;
     subplot(212);
     plot(abs(fft(x)));
     xlabel('Frequency/Hz');
     ylabel('Amplitude');
-    title('信号的频谱');
+    title('音频的频谱');
     grid;
 end     
 
